@@ -36,11 +36,11 @@ void main()
 
   // calculate normal in WCS.  (Do not divide by w since this is a direction and w = 0.)
 
-  normal = vec3(1,0,0);		// CHANGE THIS
+  normal = vec3(OCS_to_WCS * vec4(vertNormal, 0.0));
 
   // Calculate position in WCS
 
-  wcsPosition = vec3(1,0,0);	// CHANGE THIS
+  wcsPosition = vec3(OCS_to_WCS * vec4(vertPosition, 1.0));
 
   // Copy texture coords to frag shader
 
