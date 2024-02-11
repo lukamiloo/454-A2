@@ -32,7 +32,7 @@ void main()
   // parameters from the wavefront model, to be used as input to
   // pass2.frag.
 
-  colour = vec3(0,1,0);		// CHANGE THIS
+  colour = kd;
 
   // calculate normal in WCS.  (Do not divide by w since this is a direction and w = 0.)
 
