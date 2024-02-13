@@ -22,6 +22,11 @@ in vec2 texCoords;     // fragment texture coordinates (if provided)
 
 out vec4 fragColour;   // fragment's final colour
 
+uniform vec3 ks;
+uniform vec3 Ia;
+uniform vec3 Ie;
+uniform float shininess;
+
 
 void main()
 
@@ -54,6 +59,19 @@ void main()
 
   // YOUR CODE HERE
   float NdotL = dot(normalize(normal), normalize(lightDir));
+  
+  //Phong
+  float Iin = 1.0;
+  vec3 V = normalize(eyePosition - wcsPosition);
+  vec3 R = normalize(2.0 * NdotL * normal - lightDir);
+  float RdotV = dot(R, V);
+  float specular = ks * Iin * pow(RdotV, shininess)
+  float diffuse = Iin * NdotL;
+  vec3 ambient = Ia;
+  vec3 emissive = Ie;
+
+  fragColour = fragColour + vec4(diffuse, 0.0) + vec4(specular, 0.0) + vec4(ambient, 0.0) + vec4(emissive, 0.0);
+  
 
   // Choose the colour either from the object's texture (if
   // 'texturing' == 1) or from the input colour.
