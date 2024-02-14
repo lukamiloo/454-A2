@@ -65,13 +65,10 @@ void main()
   vec3 V = normalize(eyePosition - wcsPosition);
   vec3 R = normalize(2.0 * NdotL * normal - lightDir);
   float RdotV = dot(R, V);
-  float specular = ks * Iin * pow(RdotV, shininess)
-  float diffuse = Iin * NdotL;
+  vec3 specular = ks * Iin * pow(RdotV, shininess);
+  vec4 diffuse = fragColour * Iin * NdotL;
   vec3 ambient = Ia;
-  vec3 emissive = Ie;
-
-  fragColour = fragColour + vec4(diffuse, 0.0) + vec4(specular, 0.0) + vec4(ambient, 0.0) + vec4(emissive, 0.0);
-  
+  vec3 emissive = Ie;  
 
   // Choose the colour either from the object's texture (if
   // 'texturing' == 1) or from the input colour.
@@ -79,11 +76,14 @@ void main()
   // YOUR CODE HERE
   if(texturing){
     fragColour = vec4(texture(objTexture, texCoords).rgb, 1);
+  } else {
+    fragColour = vec4(colour, 1.0);
   }
 
   // Output the fragment colour, modified by the illumination model
   // and shadowing.
   
   //fragColour = vec4(0,1,0,1);
-  fragColour = vec4(colour, 1.0);
+  //fragColour = vec4(colour, 1.0);
+  fragColour = diffuse + vec4(specular, 0.0) + vec4(ambient, 0.0) + vec4(emissive, 0.0);
 }
