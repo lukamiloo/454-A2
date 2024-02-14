@@ -25,7 +25,7 @@ void main()
 {
   // calculate vertex position in eye's CCS.  Store this in gl_Position.
 
-  gl_Position = OCS_to_CCS * vec4( vertPosition, 1.0f );
+  gl_Position = OCS_to_CCS * vec4(vertPosition, 1.0);
 
   // Provide a colour from the wavefront model (see 'setMaterial' in
   // wavefront.cpp).  If doing Phong, also output other Phong
