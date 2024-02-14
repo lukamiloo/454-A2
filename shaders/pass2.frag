@@ -74,6 +74,7 @@ void main()
   vec3 ambient = Ia;
   vec3 emissive = Ie;  
 
+
   // Choose the colour either from the object's texture (if
   // 'texturing' == 1) or from the input colour.
 
@@ -82,7 +83,7 @@ void main()
     fragColour = vec4(texture(objTexture, texCoords).rgb, 1.0);
   } else {
     fragColour = vec4(colour, 1.0);
-  }
+
 
   // Output the fragment colour, modified by the illumination model
   // and shadowing.
