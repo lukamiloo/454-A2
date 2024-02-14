@@ -53,7 +53,6 @@ void main()
   // If results look bad, add a bit to the shadow texture depth to
   // prevent z-fighting.
 
-  // YOUR CODE HERE
   bool inShadow = false;
   if(fragDepth > shadowDepth + 0.01){     //adding 0.01 to stop z-fighting
     inShadow = true;
@@ -61,7 +60,6 @@ void main()
 
   // Compute illumination.  Initially just do diffuse "N dot L".  Later do Phong.
 
-  // YOUR CODE HERE
   float NdotL = dot(normalize(normal), normalize(lightDir));
   
   //Phong
@@ -78,12 +76,11 @@ void main()
   // Choose the colour either from the object's texture (if
   // 'texturing' == 1) or from the input colour.
 
-  // YOUR CODE HERE
   if(texturing){
     fragColour = vec4(texture(objTexture, texCoords).rgb, 1.0);
   } else {
     fragColour = vec4(colour, 1.0);
-
+  }
 
   // Output the fragment colour, modified by the illumination model
   // and shadowing.
@@ -96,3 +93,4 @@ void main()
   //fragColour = vec4(colour, 1.0);
   fragColour = fragColour * diffuse + vec4(specular, 0.0) + vec4(ambient, 0.0) + vec4(emissive, 0.0);
 }
+
