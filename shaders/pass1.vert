@@ -19,10 +19,10 @@ void main()
   // Calculate the position of this vertex in the light's CCS.
   // Also store this in gl_Position.
 
-  vec4 ccsLightPos = OCS_to_lightCCS * vec4(vertPosition, 1.0f); // CHANGE THIS
+  vec4 ccsLightPos = OCS_to_lightCCS * vec4(vertPosition, 1.0);
   gl_Position = ccsLightPos;
 
   // Output the ccsLightDepth in the range [0,1]
 
-  ccsLightDepth = ((ccsLightPos.z / ccsLightPos.w) + 1.0) * 0.5; // CHANGE THIS
+  ccsLightDepth = ((ccsLightPos.z / ccsLightPos.w) + 1.0) * 0.5;
 }
